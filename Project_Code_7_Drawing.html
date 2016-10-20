@@ -249,7 +249,7 @@
           // If there is, get rid of it and remove the markers
           if (polygon) {
             polygon.setMap(null);
-            hideListings(markers);
+            hideListings();
           }
           // Switching the drawing mode to the HAND (i.e., no longer drawing).
           drawingManager.setDrawingMode(null);
@@ -346,13 +346,20 @@
       function toggleDrawing(drawingManager) {
         if (drawingManager.map) {
           drawingManager.setMap(null);
-          // In case the user drew anything, get rid of the polygon
-          if (polygon !== null) {
+
+          if (polygon) {
+            polygon.setMap(null);
+            }
+        }
+        else {
+          drawingManager.setMap(map);
+        }  // In case the user drew anything, get rid of the polygon
+        /*  if (polygon !== null) {
             polygon.setMap(null);
           }
         } else {
           drawingManager.setMap(map);
-        }
+        }*/
       }
 
       // This function hides all markers outside the polygon,
@@ -371,7 +378,8 @@
 
     <script async defer
         src=
-        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=MYAPIKEY&v=3&callback=initMap">
+        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyDhxjDlYEHraVbLSLRF9trxPSSs4YDQ4xo&v=3&callback=initMap">
+
     </script>
 
   </body>
